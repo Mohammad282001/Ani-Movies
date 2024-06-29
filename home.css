@@ -10,6 +10,7 @@ body{
     padding: 20px;
     height: 20rem;
     margin-top: 3rem;
+    margin-left: 2%;
 }
 .custom-button {
     background-color: #B43FEB;
@@ -164,13 +165,16 @@ body{
 
 /**************************Top Movies*********************** */
 .title-topMovies{
-    margin: 3rem;
+ margin-top: 3rem;
+margin-bottom: 3rem;
+    
 }
 .collection {
     height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 4rem;
 }
 
 .content {
@@ -321,6 +325,7 @@ body{
         font-size: 20px;
         margin-bottom: 30px;
     }
+  
     .title-topMovies{
         font-size: 20px;
         margin-top: 30px;

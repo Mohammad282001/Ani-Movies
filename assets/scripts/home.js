@@ -105,10 +105,9 @@ function createCard(id, imageUrl, title, synopsis) {
     mainDiv.appendChild(divTop);
   
     const link = document.createElement("a");
-    link.href = "#";
+    link.href = `../pages/Movie detiles.html?movie_id:${id}`;
     link.onclick = () => {
-      sessionStorage.setItem("animeId", id);
-      window.location.href = "../pages/Movie detiles.html";
+    sessionStorage.setItem("animeId", id);
     };
     divTop.appendChild(link);
   
@@ -130,8 +129,9 @@ function createCard(id, imageUrl, title, synopsis) {
     DivText.appendChild(pText);
   }
   
-  // Fetch data from jikan.moe
-  fetch("https://api.jikan.moe/v4/anime/1")
+// Fetch data from jikan.moe
+
+  fetch(`https://api.jikan.moe/v4/anime`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
@@ -139,10 +139,15 @@ function createCard(id, imageUrl, title, synopsis) {
       return response.json();
     })
     .then((data) => {
-        console.log(data);
+      
       if (Array.isArray(data.data)) {
-        data.data.slice(0, 10).forEach((information) => {
-          createCard(information.mal_id, information.images.jpg.image_url, information.title, information.synopsis);
+        data.data.slice(0, 25).forEach((information) => {
+          createCard(
+            information.mal_id,
+            information.images.jpg.image_url,
+            information.title,
+            information.synopsis
+          );
         });
       } else {
         console.error("Data is not an array:", data);
@@ -151,6 +156,7 @@ function createCard(id, imageUrl, title, synopsis) {
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
+  
   
   
 

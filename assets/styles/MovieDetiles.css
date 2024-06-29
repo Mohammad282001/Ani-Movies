@@ -7,7 +7,7 @@ body {
   margin: 0;
   display: flex;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #000000;
 }
 
 * {
@@ -395,10 +395,9 @@ body {
 .slider-scrollbar:hover .scrollbar-track {
     height: 4px;
 }
-
 .slider-scrollbar .scrollbar-thumb {
     position: absolute;
-    background: #000;
+    background: rgb(255, 255, 255, 0.75);
     top: 0;
     bottom: 0;
     width: 50%;

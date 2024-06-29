@@ -94,3 +94,69 @@ var swiper = new Swiper(".mySwiper", {
   });
 
 /**************************\Top Movies*********************** */
+
+/******************top movies Dom********************************** */
+
+function createCard(id, imageUrl, title, synopsis) {
+    const mainDiv = document.getElementById("swiper-wrapper");
+  
+    const divTop = document.createElement("div");
+    divTop.setAttribute("class", "content swiper-slide");
+    mainDiv.appendChild(divTop);
+  
+    const link = document.createElement("a");
+    link.href = "#";
+    link.onclick = () => {
+      sessionStorage.setItem("animeId", id);
+      window.location.href = "../pages/Movie detiles.html";
+    };
+    divTop.appendChild(link);
+  
+    const imageTop = document.createElement("img");
+    imageTop.setAttribute("alt", "image");
+    imageTop.src = imageUrl;
+    link.appendChild(imageTop);
+  
+    const DivText = document.createElement("div");
+    DivText.setAttribute("class", "text-content");
+    divTop.appendChild(DivText);
+  
+    const h3Text = document.createElement("h3");
+    h3Text.innerHTML = title;
+    DivText.appendChild(h3Text);
+  
+    const pText = document.createElement("p");
+    pText.innerHTML = synopsis ? synopsis.substring(0, 100) + '...' : 'No synopsis available';
+    DivText.appendChild(pText);
+  }
+  
+  // Fetch data from jikan.moe
+  fetch("https://api.jikan.moe/v4/anime/1")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+      if (Array.isArray(data.data)) {
+        data.data.slice(0, 10).forEach((information) => {
+          createCard(information.mal_id, information.images.jpg.image_url, information.title, information.synopsis);
+        });
+      } else {
+        console.error("Data is not an array:", data);
+      }
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+  
+  
+
+  
+
+  
+  
+
+

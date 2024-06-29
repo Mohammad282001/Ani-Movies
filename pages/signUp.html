@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineMax Registration</title>
     <link rel="stylesheet" href="../assets/styles/signUp.css">
+    <script type="module" src="../assets/scripts/firebaseauth.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -23,23 +25,25 @@
                 <form>
                     <div class="input-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your name">
+                        <input type="text" id="signUpName" name="name" placeholder="Enter your name">
                     </div>
                     <div class="input-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email address">
+                        <input type="email" id="signUpEmail" name="email" placeholder="Enter your email address">
                     </div>
                     <div class="input-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter your password">
+                        <input type="password" id="signUpPassword" name="password" placeholder="Enter your password">
                     </div>
                     <div class="input-group">
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter your password">
+                        <input type="password" id="confirmPassword" name="confirm-password" placeholder="Enter your password">
                     </div>
-                    <button type="submit" class="login-button">Register</button><br><br>
+                    <button  class="signUp-button" id="submitSignUp">Register</button><br><br>
                     <p class="login-text">Already have an account? <a href="./login.html">Login</a></p>
                 </form>
+                <div id="signUpMessage" class="messageDiv" style="display: none; background-color: green; color: white; "></div>
+
             </div>
         </div>
     </div>

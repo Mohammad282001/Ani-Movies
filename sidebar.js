@@ -62,13 +62,3 @@ function toggleDarkMode() {
   const darkModeToggle = document.querySelector(".dark-mode-toggle");
   darkModeToggle.classList.toggle("on");
 }
-/**********************nav */
-
-let btnMenu = document.getElementById("btnMenu");
-let NavLinks = document.querySelector(".menu-container");
-
-btnMenu.onclick = function(){
-  NavLinks.classList.toggle("active");
-  btnMenu.classList.toggle("fa-times")
- 
-}

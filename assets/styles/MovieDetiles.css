@@ -496,3 +496,46 @@ body {
     width: calc(100% - 2rem); /* Adjust margin/padding */
   }
 }
+/* ============== popup ============== */
+    .model-header{
+      display: flex;
+      justify-content: flex-end;
+    }
+    .close{
+      padding: 5px 8px !important;
+    }
+
+       .popup {
+      display: none;
+      position: fixed;
+      width: 35%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #0D0C0F;
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .popup input[type="email"],
+    .popup textarea {
+      width: 80%;
+      margin-top: 10px;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .popup button {
+      background-color: #b43feb;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .popup button:hover {
+      background-color: #b43feb;
+    }

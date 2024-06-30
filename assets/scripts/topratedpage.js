@@ -1,6 +1,6 @@
 const linksSidebar = [
   { nameSidebar: "MENU", noHover: true },
-  { nameSidebar: "Discovery", url: "#", iconSidebar: "fab fa-cc-discover" },
+  { nameSidebar: "Discovery", url: "/index.html", iconSidebar: "fab fa-cc-discover" },
   { nameSidebar: "Top Rated", url: "#", iconSidebar: "far fa-star" },
   { nameSidebar: "Coming Soon", url: "#", iconSidebar: "fas fa-stopwatch" },
   {

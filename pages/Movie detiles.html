@@ -64,12 +64,14 @@
           background-color: #0d0c0f;
           margin: 0 auto;
           margin-top: 3rem;
+          
         "
-      >
-      <!----------------------image------------------------>
+       id="imageDetiles">
+     
+      <!----------------------image----------------------
         <img src="../assets/images/Video.png" class="card-img-top" alt="..." />
-      <!----------------------/image------------------------>
-    
+      -------------------/image------------------------>
+        
         <div class="card-body d-flex justify-content-center align-items-center">
           <div class="container text-center">
             <div class="row">
@@ -81,8 +83,9 @@
                     text-align: left;
                     padding-bottom: 0.25rem;
                   "
+                  id="titleDetiles"
                 >
-                  The Batman
+                  <!-- The Batman -->
                 </h4>
                 <!----------------/title------------------->
 
@@ -93,8 +96,10 @@
                     font-size: small;
                     padding-bottom: 0.25rem;
                   "
-                >
-                  <i class="bi bi-film"></i> Action • Crime
+                 id="category";
+                ><!------------------category------------------>
+                   <i class="bi bi-film"></i> <!--Action • Crime -->
+                  <!-------------------category----------------->
                 </h6>
 
                 <h6
@@ -105,8 +110,9 @@
                     padding-bottom: 0.25rem;
                   "
                 >
-
-                  <i class="bi bi-star-fill" style="color: yellow"></i> 9.0
+<!------------------------------------------------->
+                  <i class="bi bi-star-fill" style="color: yellow" id="rating"></i> 9.0
+<!----------------------------------------------->              
                 </h6>
                 
               </div>
@@ -316,59 +322,96 @@
           </div>
         </div>
 
-        <div class="card-body d-flex justify-content-center align-items-center">
+        <div
+          class="card-body d-flex justify-content-center align-items-center"
+          style="margin-top: -45px"
+        >
           <div class="container text-center">
             <div class="row">
-              <div
-                class="col"
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              >
-                <h4
-                  style="
-                    color: #ffffff;
-                    text-align: left;
-                    padding: 0.8rem 1.25rem;
-                  "
-                >
-                  3 comments
-                </h4>
-              </div>
 
               <!-- ======= write review button start =========== -->
               <div
-                class="col"
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
+                class="card-body d-flex justify-content-center align-items-center"
               >
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button
-                    class="btn"
-                    style="
-                      background-color: #b43feb;
-                      color: white;
-                      border-radius: 10px;
-                      padding: 0.5rem 1.25rem;
-                    "
-                    type="button"
-                  >
-                    <i class="bi bi-chat-dots-fill"></i> write review
-                  </button>
+                <div class="container text-center">
+                  <div class="row">
+                    <div
+                      class="col"
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <h4
+                        style="
+                          color: #ffffff;
+                          text-align: left;
+                          padding: 0.8rem 1.25rem;
+                        "
+                      >
+                        3 comments
+                      </h4>
+                    </div>
+                    <div
+                      class="col"
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <div
+                        class="d-grid gap-2 d-md-flex justify-content-md-end"
+                      >
+                        <button
+                          class="btn"
+                          style="
+                            background-color: #b43feb;
+                            color: white;
+                            border-radius: 10px;
+                            padding: 0.5rem 1.25rem;
+                          "
+                          onclick="openForm()"
+                        >
+                          <i class="bi bi-chat-dots-fill"></i> Write Review
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <br />
-              <!-- ======= write review button end =========== -->
-            </div>
-            <br /><br />
 
+              <!-- هذا هو ال Popup الذي سيظهر عند النقر على الزر -->
+              <div id="popup" class="popup">
+                <form id="form">
+                  <div class="model-header">
+                    <br />
+                    <button
+                      class="close"
+                      onclick="closeForm()"
+                      style="color: #ffffff"
+                    >
+                      X
+                    </button>
+                  </div>
+                 <br />
+                  <textarea
+                    id="comment"
+                    placeholder="Write your comments.."
+                    required
+                  ></textarea
+                  ><br />
+                  <button type="submit" class="btn">Submit Review</button>
+                </form>
+              </div>
+              <br /><br />
+            </div>
             <!-- ======= comments start =========== -->
-            <div class="container text-center" style="width: 93%">
+            <div
+              class="container text-center"
+              style="width: 93%; margin-top: 40px"
+            >
               <div class="row" style="display: flex">
                 <!-- --------- user img start --------- -->
                 <div class="col" style="flex-basis: 1%">
@@ -382,8 +425,9 @@
 
                 <!-- --------- comments text start --------- -->
                 <div class="col" style="flex-basis: 60%">
-                  <div class="content-containar" style="text-align: left">
+                  <div id="content-containar" class="content-containar" style="text-align: left">
                     <h6
+                      id="userText"
                       style="
                         color: #ffffff;
                         text-align: left;
@@ -394,6 +438,7 @@
                       Story Line
                     </h6>
                     <span
+                      id="userComment"
                       style="
                         color: #9ca4ab;
                         text-align: left;
@@ -650,8 +695,72 @@
         </div>
       </footer>
     </div>
+  
+    <script>
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return params;
+      }
+  
+      const params = getQueryParams();
+      const animeId = params.get('animeId');
+      console.log(params);
+      if (animeId) {
+        fetchAnimeDetails(animeId);
+      } else {
+        console.error('Anime ID not found in the query parameters.');
+      }
+  
+      function fetchAnimeDetails(animeId) {
+        fetch(`https://api.jikan.moe/v4/anime/${animeId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const anime = data.data;
+  
+            const detailsDiv = document.getElementById("imageDetiles");
+/**************************image************************/
+            const image = document.createElement("img");
+            image.src = anime.images.jpg.image_url;
+            image.alt = anime.title;
+            detailsDiv.insertBefore(image, detailsDiv.firstChild);
+            image.style.height = "20rem"; // Set height
+            image.style.width = "auto";
+/**************************\image************************/
+/**************************title************************/
 
+            const titleDetiles = document.getElementById("titleDetiles");
+
+                titleDetiles.innerHTML = anime.title;
+                
+
+/**************************\title************************/
+/****************************category******************************/
+             const category = document.getElementById("category");
+             for(let count=0; count<anime.genres.length; count++ ){
+              category.innerHTML +=  anime.genres[count].name + " ";
+              console.log(anime.genres[count].name);
+             }
+                 
+            //      console.log(anime.genres.length);
+/*******************************\category*****************************/
+              
+              
+            // Add more details as needed
+          })
+          .catch((error) => {
+            console.error("There was a problem with the fetch operation:", error);
+          });
+      }
+    </script>
+   
+    
     <script src="../assets/scripts/sidebar.js"></script>
     <script src="../assets/scripts/Coming Soon.js"></script>
+    <script src="../Reviews.js"></script>
   </body>
 </html>

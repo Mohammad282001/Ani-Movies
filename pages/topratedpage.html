@@ -10,7 +10,7 @@
       integrity="sha512-..."
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../assets/styles/topratedpage.css" />
+    <link rel="stylesheet" href="/assets/styles/topratedpage.css" />
   </head>
   <body>
     <!-- navbar -->
@@ -22,18 +22,22 @@
         </div>
         <div class="menu-container">
           <ul class="ulNavbar"></ul>
-          <li class="liNavbar active">Home</li>
-          <li class="liNavbar">Movies</li>
+          <li class="liNavbar active"><a href="http://127.0.0.1:5501/index.html" style="text-decoration: none;">Home</a></li>
+          <li class="liNavbar"><a href="#" style="text-decoration: none;">Movies</a></li>
           <li class="liNavbar">Series</li>
         </div>
-
+        <!-- searchbar -->
+        <div class="searchbar">
+          <input  id="search-input" type="text" placeholder="Search ..." />
+          <button id="search-button">Search</button>
+        </div>
+<!-- ................... -->
         <div class="profile-container">
-          <div>
+          <div class="search-icon">
             <span class="fas fa-search"> </span>
-            <span class="fas fa-bell"></span>
           </div>
           <div>
-            <img id="user-picture" src="user.png" alt="" />
+            <img id="user-picture" src="/assets/images/user.png" alt="" />
             <i class="fas fa-caret-down"></i>
           </div>
         </div>
@@ -44,9 +48,10 @@
 
     <div>
       <div class="sidebar" id="sidebar"></div>
+    </div>
 
-      <!-- containar -->
-      <!-- <div class="containar">
+    <!-- containar -->
+    <!-- <div class="containar">
         <div class="content-containar">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
           perspiciatis molestiae maxime tempora? Minus sequi sit dignissimos, quia
@@ -55,12 +60,12 @@
         </div>
       </div> -->
 
-      <div class="top-rated">
-        <h2>Top Rated</h2>
+    <div class="top-rated">
+      <h2>Top Rated</h2>
 
-        <div class="movie-grid">
-          <section id="main-section">
-            <!-- <div class="movie-card">
+      <div class="movie-grid">
+        <section id="main-section">
+          <!-- <div class="movie-card">
               <img
                 src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX24748048.jpg"
                 alt="The Shawshank Redemption"
@@ -94,7 +99,7 @@
                 <div class="genre">Action • Crime</div>
               </div>
             </div> -->
-          </section>
+        </section>
         <!-- </div>
         <div class="movie-grid">
           <div class="movie-cardb">
@@ -122,10 +127,20 @@
             </div>
           </div>
         </div>
-        <!-- <div id="main-section"></div> -->
+        <!-<div id="main-section"></div> -->
       </div>
-    </div> -->
+    </div>
+    
+    <!-- <a "./Movie detiles.html">
+    <img src="${anime.imageUrl}" alt="${anime.title}">
+      <div>
+        <h2>${anime.title}</h2>
+      </a>
+        <p>Episodes: ${anime.episodes}</p>
+        <div class="rating">&#9733; 9.2</div>
+      </div> -->
 
     <script src="../assets/scripts/topratedpage.js"></script>
   </body>
 </html>
+

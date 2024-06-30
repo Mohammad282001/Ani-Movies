@@ -497,7 +497,7 @@ body {
   }
 }
 /* ============== popup ============== */
-    .model-header{
+    /* .model-header{
       display: flex;
       justify-content: flex-end;
     }
@@ -538,4 +538,4 @@ body {
     }
     .popup button:hover {
       background-color: #b43feb;
-    }
+    } */

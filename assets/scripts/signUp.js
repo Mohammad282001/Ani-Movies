@@ -23,9 +23,11 @@ function showMessage(message, divId) {
     messageDiv.style.opacity = 1;
     setTimeout(function () {
         messageDiv.style.opacity = 0;
+        messageDiv.style.display = "none";
     }, 5000);
 }
 
+// Sign Up Functionality
 const signUp = document.getElementById("submitSignUp");
 signUp.addEventListener('click', (event) => {
     event.preventDefault();
@@ -55,7 +57,7 @@ signUp.addEventListener('click', (event) => {
             const docRef = doc(db, "users", user.uid);
             setDoc(docRef, userData)
                 .then(() => {
-                    window.location.href = "signUp.html";
+                    window.location.href = "login.html";
                 })
                 .catch((error) => {
                     console.error("Error writing document: ", error);

@@ -17,6 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app); // Initialize Firestore
+const auth = getAuth();
+
 
 
 function showMessage(message, divId) {
@@ -39,8 +41,8 @@ signIn.addEventListener("click", (event) => {
     const auth = getAuth();
 
     // Debugging step: Ensure email and password are captured correctly
-    // console.log("Attempting to sign in with Email:", email);
-    // console.log("Password:", password);
+    console.log("Attempting to sign in with Email:", email);
+    console.log("Password:", password);
 
     if (!email || !password) {
         showMessage("Please fill out both fields", "loginMessage");
@@ -85,3 +87,9 @@ signIn.addEventListener("click", (event) => {
 //         console.log("Error getting document:", error);
 //     });
 // }
+
+
+// userDashboard.html
+
+
+// Function to check if the referrer is from the same origin

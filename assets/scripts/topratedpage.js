@@ -146,3 +146,31 @@ function renderAnime(animeList) {
 window.onload = function () {
   fetchAnimeAndRender("naruto"); // Default search query example ('naruto')
 };
+
+if (sessionStorage.getItem("userID" , null) === null){
+
+  let navbar = document.getElementById("navbar");
+  navbar.innerHTML= `<div class="navbar-container">
+            <div class="logo-container">
+              <h6 id="logo"> ANIMOVES</h6>
+             
+            </div>
+            <div class="menu-container">
+              
+              <a href="index.html"><li class="liNavbar active">Home</li></a>
+              <li class="liNavbar">Movies</li>
+              <li class="liNavbar">Series</li>
+            </div>
+    
+            <div class="profile-container">
+              <div style="margin: 15px;">
+                <span class="fas fa-search" > </span>
+              </div>
+              <div>
+              <button type="button" onclick="window.location.href='pages/login.html'" class="btn btn-light" style="background-color:#b43feb;color: #ffffff;border-color: #b43feb ;">Login</button>
+               </div>
+              
+            </div>
+           <i id="btnMenu" class="fa-solid fa-bars"></i>
+          </div>`;
+}

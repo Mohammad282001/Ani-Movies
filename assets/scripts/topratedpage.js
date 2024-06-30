@@ -77,16 +77,18 @@ function toggleDarkMode() {
 // Call the function with a search term
 // updateMovieCard('Naruto');
 
-function Anime(id, title, synopsis, episodes, imageUrl) {
+function Anime(id, title, synopsis, episodes, imageUrl, score) {
   this.id = id;
   this.title = title;
   this.synopsis = synopsis;
   this.episodes = episodes;
   this.imageUrl = imageUrl;
+  this.score = score;
 }
 
 async function fetchAnimeAndRender(search) {
   try {
+
     const response = await fetch(`https://api.jikan.moe/v4/anime?q=${search}`);
     if (!response.ok) {
       throw new Error("Network response was not ok.");
@@ -109,7 +111,8 @@ async function fetchAnimeAndRender(search) {
         anime.title,
         anime.synopsis,
         anime.episodes,
-        anime.images.jpg.image_url
+        anime.images.jpg.image_url,
+        anime.score
       );
     });
 
@@ -135,7 +138,7 @@ function renderAnime(animeList) {
       <div>
         <h2>${anime.title}</h2>
         <p>Episodes: ${anime.episodes}</p>
-        <div class="rating">&#9733; 9.2</div>
+        <div class="rating">&#9733; ${anime.score} </div>
       </div>
     `;
     mainSection.appendChild(card);
@@ -144,7 +147,8 @@ function renderAnime(animeList) {
 
 // Call fetchAnimeAndRender with a default search query when the page loads
 window.onload = function () {
-  fetchAnimeAndRender("naruto"); // Default search query example ('naruto')
+  fetchAnimeAndRender(""); // Default search query example ('naruto')
+  
 };
 
 // the seachbar function
@@ -157,7 +161,7 @@ document.querySelector(".search-icon").addEventListener("click", function () {
 
 async function fetchAnimeAndRender(search) {
   try {
-    const response = await fetch(`https://api.jikan.moe/v4/anime`);
+    const response = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=20`);
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
@@ -169,6 +173,8 @@ async function fetchAnimeAndRender(search) {
       throw new Error("Unexpected data format from API.");
     }
 
+
+    
     // Limit to first 20 results for simplicity
     const animeList = data.data.slice(0, 20);
 
@@ -179,7 +185,8 @@ async function fetchAnimeAndRender(search) {
         anime.title,
         anime.synopsis,
         anime.episodes,
-        anime.images.jpg.image_url
+        anime.images.jpg.image_url,
+        anime.score
       );
     });
 
@@ -199,12 +206,16 @@ function renderAnime(animeList) {
   animeList.forEach((anime) => {
     const card = document.createElement("div");
     card.setAttribute("class", "movie-card");
-    card.innerHTML = `
-      <img src="${anime.imageUrl}" alt="${anime.title}">
+    card.innerHTML = 
+    `
+    
+          <a href = "Movie detiles.html?animeId=${anime.id}">
+        <img src="${anime.imageUrl}" alt="${anime.title}">
       <div>
         <h2>${anime.title}</h2>
+      </a>
         <p>Episodes: ${anime.episodes}</p>
-        <div class="rating">&#9733; 9.2</div>
+        <div class="rating">&#9733; ${anime.score}</div>
       </div>
     `;
     mainSection.appendChild(card);
@@ -222,7 +233,7 @@ document.getElementById("search-button").addEventListener("click", async () => {
 document.querySelector(".search-icon").addEventListener("click", function () {
   document.querySelector(".searchbar").style.display = "flex";
   document.querySelector(".search-icon").style.display = "none";
-}); 
+});
 
 document
   .querySelector(".search-icon")
@@ -240,6 +251,4 @@ document
     if (searchInput) {
       await fetchAnimeAndRender(searchInput);
     }
-  });
-
-  
+  }); 

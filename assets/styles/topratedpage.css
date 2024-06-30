@@ -383,3 +383,8 @@ section {
 .searchbar button:hover {
   background-color: #7200cc;
 }
+
+a{
+  text-decoration: none;
+  color: white;
+}

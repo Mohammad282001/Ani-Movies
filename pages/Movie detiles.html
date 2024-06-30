@@ -242,6 +242,16 @@
                     X
                   </button>
                 </div>
+
+                <!-- --------- user img end --------- -->
+
+                <!-- --------- comments text start --------- ------------------------------------------------------->
+                <div class="col" style="flex-basis: 60%">
+                  <div id="content-containar" id="MoComment" class="content-containar" style="text-align: left">
+                    <!-- <h6
+                      id="userText"
+                      style="
+
                 <br />
                 <textarea id="comment" placeholder="Write your comments.." required></textarea><br />
                 <button type="submit" class="btn">Submit Review</button>
@@ -262,6 +272,7 @@
               <div class="col" style="flex-basis: 60%">
                 <div id="content-containar" class="content-containar" style="text-align: left">
                   <h6 id="userText" style="
+
                         color: #ffffff;
                         text-align: left;
                         padding-bottom: 0.25rem;
@@ -276,6 +287,21 @@
                         padding-bottom: 0.25rem;
                         font-weight: 400;
                         margin-right: 1rem;
+
+                      "
+                      >Originally a story from Archie Comics which started in
+                      1941, Riverdale centres around a group of high school
+                      students who are shocked by the death of classmate, Jason
+                      Blossom. Together theyunravel the secrets of Riverdale and
+                      who
+                      <span style="color: #b43feb"> ... More</span>
+                    </span> -->
+                  </div>
+                </div>
+                <!-- --------- comments text end ------------------------------------------------------------------ -->
+
+              
+
                       ">Originally a story from Archie Comics which started in
                     1941, Riverdale centres around a group of high school
                     students who are shocked by the death of classmate, Jason
@@ -443,6 +469,7 @@
                   <i class="bi bi-star-fill" style="color: yellow"></i>
                   <i class="bi bi-star-fill" style="color: white"></i>
                 </h6>
+
               </div>
               <!-- --------- rate end --------- -->
             </div>
@@ -514,6 +541,62 @@
         </div>
       </section>
     </div>
+
+  
+    <script>
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return params;
+      }
+  
+      const params = getQueryParams();
+      const animeId = params.get('animeId');
+    
+      if (animeId) {
+        fetchAnimeDetails(animeId);
+      } else {
+        console.error('Anime ID not found in the query parameters.');
+      }
+  
+      function fetchAnimeDetails(animeId) {
+        fetch(`https://api.jikan.moe/v4/anime/${animeId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const anime = data.data;
+  
+            const detailsDiv = document.getElementById("imageDetiles");
+/**************************image************************/
+            const image = document.createElement("img");
+            image.src = anime.images.jpg.image_url;
+            image.alt = anime.title;
+            detailsDiv.insertBefore(image, detailsDiv.firstChild);
+            image.style.height = "20rem"; // Set height
+            image.style.width = "auto";
+/**************************\image************************/
+/**************************title************************/
+
+            const titleDetiles = document.getElementById("titleDetiles");
+
+                titleDetiles.innerHTML = anime.title;
+                
+
+/**************************\title************************/
+/****************************category******************************/
+             const category = document.getElementById("category");
+             for(let count=0; count<anime.genres.length; count++ ){
+              category.innerHTML +=  anime.genres[count].name + " ";
+              console.log(anime.genres[count].name);
+             }
+             
+                 
+            //      console.log(anime.genres.length);
+/*******************************\category*****************************/
+
     <!-- ========== Recommendatiion end ======== -->
 
     <!-- ================ footer ============= -->
@@ -627,6 +710,7 @@
              
             </div>
             <div class="menu-container">
+
               
               <a href="index.html"><li class="liNavbar active">Home</li></a>
               <li class="liNavbar">Movies</li>
@@ -645,6 +729,18 @@
            <i id="btnMenu" class="fa-solid fa-bars"></i>
           </div>`;
       }
+
+    </script>
+   
+    
+
+    <script src="../assets/scripts/sidebar.js"></script>
+    <script src="../assets/scripts/Coming Soon.js"></script>
+    <script type="module" src="../Reviews.js"></script>
+    
+  </body>
+</html>
+=======
   </script>
 
   <script src="../assets/scripts/sidebar.js"></script>
@@ -653,3 +749,4 @@
 </body>
 
 </html>
+

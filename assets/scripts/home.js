@@ -217,3 +217,53 @@ fetch(`https://api.jikan.moe/v4/anime`)
 
   
   
+  // <ul class="image-list" id="image-list">
+  // <img class="image-item" src="./assets/images/Card Film.png" alt="img-1" />
+
+  function createCard2(id, imageUrl) {
+
+    const mainDiv2 = document.getElementById("image-list");
+    const linkComing = document.createElement("a");
+    linkComing.href = `pages/Movie detiles.html?animeId=${id}`;
+    linkComing.onclick = () => {
+    sessionStorage.setItem("animeId", id);
+    };
+    mainDiv2.appendChild(linkComing);
+  
+    const imageComing = document.createElement("img");
+    imageComing.setAttribute("alt", "image");
+    imageComing.src = imageUrl;
+    linkComing.appendChild(imageComing);
+  
+  }
+  
+
+  fetch(`https://api.jikan.moe/v4/anime`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    
+    if (Array.isArray(data.data)) {
+      data.data.slice(0, 25).forEach((information) => {
+        createCard2(
+          information.mal_id,
+          information.images.jpg.image_url
+          
+        );
+      });
+    } else {
+      console.error("Data is not an array:", data);
+    }
+  })
+  .catch((error) => {
+    console.error("There was a problem with the fetch operation:", error);
+  });
+
+  
+  
+
+  

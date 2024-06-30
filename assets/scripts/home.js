@@ -165,7 +165,6 @@ function createCard(id, imageUrl, title, synopsis) {
       navbar.innerHTML= `<div class="navbar-container">
                 <div class="logo-container">
                   <h6 id="logo"> ANIMOVES</h6>
-                 
                 </div>
                 <div class="menu-container">
                   
@@ -180,13 +179,13 @@ function createCard(id, imageUrl, title, synopsis) {
                   </div>
                   <div>
                   <button type="button" onclick="window.location.href='pages/login.html'" class="btn btn-light" style="background-color:#b43feb;color: #ffffff;border-color: #b43feb ;">Login</button>
-                   </div>
+                  </div>
                   
                 </div>
-               <i id="btnMenu" class="fa-solid fa-bars"></i>
+              <i id="btnMenu" class="fa-solid fa-bars"></i>
               </div>`;
   }
-=======
+
 fetch(`https://api.jikan.moe/v4/anime`)
   .then((response) => {
     if (!response.ok) {

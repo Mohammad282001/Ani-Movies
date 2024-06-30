@@ -131,6 +131,61 @@ function createCard(id, imageUrl, title, synopsis) {
 
 // Fetch data from jikan.moe
 
+
+  fetch(`https://api.jikan.moe/v4/anime`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      
+      if (Array.isArray(data.data)) {
+        data.data.slice(0, 25).forEach((information) => {
+          createCard(
+            information.mal_id,
+            information.images.jpg.image_url,
+            information.title,
+            information.synopsis
+          );
+        });
+      } else {
+        console.error("Data is not an array:", data);
+      }
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+  
+  
+    if (sessionStorage.getItem("userID" , null) === null){
+
+      let navbar = document.getElementById("navbar");
+      navbar.innerHTML= `<div class="navbar-container">
+                <div class="logo-container">
+                  <h6 id="logo"> ANIMOVES</h6>
+                </div>
+                <div class="menu-container">
+                  
+                  <a href="index.html"><li class="liNavbar active">Home</li></a>
+                  <li class="liNavbar">Movies</li>
+                  <li class="liNavbar">Series</li>
+                </div>
+        
+                <div class="profile-container">
+                  <div style="margin: 15px;">
+                    <span class="fas fa-search" > </span>
+                  </div>
+                  <div>
+                  <button type="button" onclick="window.location.href='pages/login.html'" class="btn btn-light" style="background-color:#b43feb;color: #ffffff;border-color: #b43feb ;">Login</button>
+                  </div>
+                  
+                </div>
+              <i id="btnMenu" class="fa-solid fa-bars"></i>
+              </div>`;
+  }
+
 fetch(`https://api.jikan.moe/v4/anime`)
   .then((response) => {
     if (!response.ok) {
@@ -156,6 +211,7 @@ fetch(`https://api.jikan.moe/v4/anime`)
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
   });
+
 
   /***********************coming soon dom********************** */
 

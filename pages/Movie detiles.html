@@ -64,12 +64,14 @@
           background-color: #0d0c0f;
           margin: 0 auto;
           margin-top: 3rem;
+          
         "
-      >
-      <!----------------------image------------------------>
+       id="imageDetiles">
+     
+      <!----------------------image----------------------
         <img src="../assets/images/Video.png" class="card-img-top" alt="..." />
-      <!----------------------/image------------------------>
-    
+      -------------------/image------------------------>
+        
         <div class="card-body d-flex justify-content-center align-items-center">
           <div class="container text-center">
             <div class="row">
@@ -81,8 +83,9 @@
                     text-align: left;
                     padding-bottom: 0.25rem;
                   "
+                  id="titleDetiles"
                 >
-                  The Batman
+                  <!-- The Batman -->
                 </h4>
                 <!----------------/title------------------->
 
@@ -93,8 +96,10 @@
                     font-size: small;
                     padding-bottom: 0.25rem;
                   "
-                >
-                  <i class="bi bi-film"></i> Action • Crime
+                 id="category";
+                ><!------------------category------------------>
+                   <i class="bi bi-film"></i> <!--Action • Crime -->
+                  <!-------------------category----------------->
                 </h6>
 
                 <h6
@@ -105,8 +110,9 @@
                     padding-bottom: 0.25rem;
                   "
                 >
-
-                  <i class="bi bi-star-fill" style="color: yellow"></i> 9.0
+<!------------------------------------------------->
+                  <i class="bi bi-star-fill" style="color: yellow" id="rating"></i> 9.0
+<!----------------------------------------------->              
                 </h6>
                 
               </div>
@@ -650,7 +656,70 @@
         </div>
       </footer>
     </div>
+  
+    <script>
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return params;
+      }
+  
+      const params = getQueryParams();
+      const animeId = params.get('animeId');
+      console.log(params);
+      if (animeId) {
+        fetchAnimeDetails(animeId);
+      } else {
+        console.error('Anime ID not found in the query parameters.');
+      }
+  
+      function fetchAnimeDetails(animeId) {
+        fetch(`https://api.jikan.moe/v4/anime/${animeId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const anime = data.data;
+  
+            const detailsDiv = document.getElementById("imageDetiles");
+/**************************image************************/
+            const image = document.createElement("img");
+            image.src = anime.images.jpg.image_url;
+            image.alt = anime.title;
+            detailsDiv.insertBefore(image, detailsDiv.firstChild);
+            image.style.height = "20rem"; // Set height
+            image.style.width = "auto";
+/**************************\image************************/
+/**************************title************************/
 
+            const titleDetiles = document.getElementById("titleDetiles");
+
+                titleDetiles.innerHTML = anime.title;
+                
+
+/**************************\title************************/
+/****************************category******************************/
+             const category = document.getElementById("category");
+             for(let count=0; count<anime.genres.length; count++ ){
+              category.innerHTML +=  anime.genres[count].name + " ";
+              console.log(anime.genres[count].name);
+             }
+                 
+            //      console.log(anime.genres.length);
+/*******************************\category*****************************/
+              
+              
+            // Add more details as needed
+          })
+          .catch((error) => {
+            console.error("There was a problem with the fetch operation:", error);
+          });
+      }
+    </script>
+   
+    
     <script src="../assets/scripts/sidebar.js"></script>
     <script src="../assets/scripts/Coming Soon.js"></script>
   </body>
